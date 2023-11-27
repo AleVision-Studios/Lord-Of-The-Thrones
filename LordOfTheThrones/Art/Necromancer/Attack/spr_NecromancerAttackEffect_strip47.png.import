@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqrpwdux0am51"
-path="res://.godot/imported/cat1.jpg-e39fa2a6f413a7cd0d97e048d0119bcc.ctex"
+uid="uid://d2p1okqslx6or"
+path="res://.godot/imported/spr_NecromancerAttackEffect_strip47.png-e4bf546e0821a264ca6ad02511df7d12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cat1.jpg"
-dest_files=["res://.godot/imported/cat1.jpg-e39fa2a6f413a7cd0d97e048d0119bcc.ctex"]
+source_file="res://Art/Necromancer/Attack/spr_NecromancerAttackEffect_strip47.png"
+dest_files=["res://.godot/imported/spr_NecromancerAttackEffect_strip47.png-e4bf546e0821a264ca6ad02511df7d12.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://htj21sbqifha"
-path="res://.godot/imported/Blue.png-99b845350a8b7cb68c6cc5bba6d44eeb.ctex"
+uid="uid://cjnsou11e478s"
+path="res://.godot/imported/spr_NecromancerDeathWithBkg_strip52.png-1c0c471bdf846719988dc57afc9cb522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Blue.png"
-dest_files=["res://.godot/imported/Blue.png-99b845350a8b7cb68c6cc5bba6d44eeb.ctex"]
+source_file="res://Art/Necromancer/Death/spr_NecromancerDeathWithBkg_strip52.png"
+dest_files=["res://.godot/imported/spr_NecromancerDeathWithBkg_strip52.png-1c0c471bdf846719988dc57afc9cb522.ctex"]
 
 [params]
 
