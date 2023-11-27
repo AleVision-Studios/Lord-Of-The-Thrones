@@ -1,4 +1,4 @@
-# Lord-Of-The-Thrones
+# Lord Of The Thrones
 
 🌟 Embark on an Epic Odyssey: Unveil the Boundless Realms of Magic and Mystery! 🌟
 
