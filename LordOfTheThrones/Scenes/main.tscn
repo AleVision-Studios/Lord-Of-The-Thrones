@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyitsuu3wpkaf"]
+[gd_scene load_steps=7 format=3 uid="uid://cyitsuu3wpkaf"]
 
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
 [ext_resource type="PackedScene" uid="uid://cvfl6itsuya8" path="res://Scenes/combat_player.tscn" id="2_nffw5"]
 [ext_resource type="PackedScene" uid="uid://c7snc6ruap35b" path="res://Scenes/combat_necromancer.tscn" id="3_b0kdp"]
 [ext_resource type="PackedScene" uid="uid://13ofcy2yv6f4" path="res://Scenes/combat_hud.tscn" id="4_m3qso"]
 [ext_resource type="AudioStream" uid="uid://ipm0inop5eat" path="res://Art/Medieval Vol. 2 6.ogg" id="5_o7inf"]
+[ext_resource type="Texture2D" uid="uid://cl8p2tli4evp0" path="res://Art/hqdefault-removebg-preview(2).png" id="6_uv48p"]
 
 [node name="Main" type="Node"]
 
@@ -30,3 +31,8 @@ scale = Vector2(7, 7)
 [node name="BG_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o7inf")
 autoplay = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 480.0
+offset_bottom = 360.0
+texture = ExtResource("6_uv48p")
