@@ -1,14 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=6 format=3 uid="uid://8i87nixgef66"]
 
-[ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
 [ext_resource type="PackedScene" uid="uid://cvfl6itsuya8" path="res://Scenes/combat_player.tscn" id="2_nffw5"]
 [ext_resource type="PackedScene" uid="uid://c7snc6ruap35b" path="res://Scenes/combat_necromancer.tscn" id="3_b0kdp"]
 [ext_resource type="PackedScene" uid="uid://13ofcy2yv6f4" path="res://Scenes/combat_hud.tscn" id="4_m3qso"]
 [ext_resource type="AudioStream" uid="uid://ipm0inop5eat" path="res://Art/Medieval Vol. 2 6.ogg" id="5_o7inf"]
 
-[node name="Combat" type="Node"]
-script = ExtResource("1_ira6s")
+[node name="Main" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -20,16 +18,14 @@ grow_vertical = 2
 texture = ExtResource("1_jdhbb")
 
 [node name="Player" parent="." instance=ExtResource("2_nffw5")]
-position = Vector2(352, 619)
+position = Vector2(448, 616)
 scale = Vector2(7, 7)
 
 [node name="Necromancer" parent="." instance=ExtResource("3_b0kdp")]
-position = Vector2(1600, 592)
+position = Vector2(1576, 592)
 scale = Vector2(7, 7)
 
 [node name="Combat_HUD" parent="." instance=ExtResource("4_m3qso")]
 
 [node name="BG_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o7inf")
-volume_db = -68.396
-autoplay = true

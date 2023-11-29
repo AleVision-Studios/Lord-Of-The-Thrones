@@ -1,9 +1,9 @@
 [gd_scene load_steps=187 format=3 uid="uid://c7snc6ruap35b"]
 
-[ext_resource type="Script" path="res://Script/Enemy.cs" id="1_d5ko7"]
 [ext_resource type="Texture2D" uid="uid://edon1k2rx5je" path="res://Art/Necromancer/Death/spr_NecromancerDeath_strip52.png" id="1_g13as"]
 [ext_resource type="Texture2D" uid="uid://dirnfahwtxyjr" path="res://Art/Necromancer/Attack/spr_NecromancerAttackWithEffect_strip47.png" id="1_hdsrp"]
 [ext_resource type="Texture2D" uid="uid://ct6chlakole1y" path="res://Art/Necromancer/Idle/spr_NecromancerIdle_strip50.png" id="1_ixxp7"]
+[ext_resource type="Script" path="res://Script/Enemy.cs" id="1_mbfw8"]
 [ext_resource type="Texture2D" uid="uid://48ptcq24hw2o" path="res://Art/Necromancer/GetHit/spr_NecromancerGetHit_strip9.png" id="2_mmhn5"]
 [ext_resource type="Texture2D" uid="uid://co8xlarv5hhb1" path="res://Art/Necromancer/Spawn/spr_NecromancerSpawn_strip20.png" id="5_r5olq"]
 
@@ -1285,7 +1285,7 @@ animations = [{
 size = Vector2(33, 49)
 
 [node name="Necromancer" type="Area2D"]
-script = ExtResource("1_d5ko7")
+script = ExtResource("1_mbfw8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
