@@ -1,5 +1,6 @@
-[gd_scene load_steps=58 format=3 uid="uid://cvfl6itsuya8"]
+[gd_scene load_steps=59 format=3 uid="uid://cvfl6itsuya8"]
 
+[ext_resource type="Script" path="res://Script/Player.cs" id="1_bphmi"]
 [ext_resource type="Texture2D" uid="uid://kdu2lw8s1tym" path="res://Art/Knight/noBKG_KnightAttack_strip.png" id="1_i3a0h"]
 [ext_resource type="Texture2D" uid="uid://dbk4o8xewjxk7" path="res://Art/Knight/noBKG_KnightIdle_strip.png" id="1_srqg0"]
 [ext_resource type="Texture2D" uid="uid://dmbd1xrl6lxvn" path="res://Art/Knight/noBKG_KnightDeath_strip.png" id="2_nx0k0"]
@@ -390,6 +391,7 @@ animations = [{
 size = Vector2(26, 30)
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_bphmi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
