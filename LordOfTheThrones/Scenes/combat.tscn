@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=7 format=3 uid="uid://cyitsuu3wpkaf"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]

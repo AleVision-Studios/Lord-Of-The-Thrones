@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://13ofcy2yv6f4"]
+[gd_scene load_steps=3 format=3 uid="uid://13ofcy2yv6f4"]
+
+[ext_resource type="Script" path="res://Script/HUD.cs" id="1_scvtk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1whj"]
 content_margin_left = 40.0
@@ -12,49 +14,8 @@ border_width_right = 6
 border_width_bottom = 6
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mbmp"]
-bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxu2u"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 0.0
-content_margin_bottom = 5.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eafp"]
-content_margin_left = 1.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.458824, 0.670588, 0.313726, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ilv2"]
-bg_color = Color(0.698039, 0.0823529, 0.141176, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
 [node name="Combat_HUD" type="CanvasLayer"]
+script = ExtResource("1_scvtk")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 12
@@ -75,85 +36,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+[node name="Attack" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_x1whj")
 text = "ATTACK"
 
-[node name="PlayerStats" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 720.0
-offset_right = -1280.0
-offset_bottom = -216.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4mbmp")
-
-[node name="PlayerContainer" type="VBoxContainer" parent="PlayerStats"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PlayerName" type="Label" parent="PlayerStats/PlayerContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_gxu2u")
-text = "PLAYER"
-
-[node name="PlayerHealthBar" type="ProgressBar" parent="PlayerStats/PlayerContainer"]
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_3eafp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0ilv2")
-value = 90.0
-fill_mode = 1
-
-[node name="EnemyStats" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1280.0
-offset_top = 720.0
-offset_bottom = -216.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4mbmp")
-
-[node name="EnemyContainer" type="VBoxContainer" parent="EnemyStats"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="EnemyName" type="Label" parent="EnemyStats/EnemyContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_gxu2u")
-text = "ENEMY"
-horizontal_alignment = 2
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="EnemyStats/EnemyContainer"]
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_3eafp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0ilv2")
-value = 90.0
-fill_mode = 1
+[connection signal="pressed" from="Panel/HBoxContainer/Attack" to="." method="OnAttackPressed"]
