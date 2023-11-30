@@ -1,11 +1,106 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=15 format=3 uid="uid://bjqgfc1tr6siy"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
 [ext_resource type="PackedScene" uid="uid://cvfl6itsuya8" path="res://Scenes/combat_player.tscn" id="2_nffw5"]
 [ext_resource type="PackedScene" uid="uid://c7snc6ruap35b" path="res://Scenes/combat_necromancer.tscn" id="3_b0kdp"]
-[ext_resource type="PackedScene" uid="uid://13ofcy2yv6f4" path="res://Scenes/combat_hud.tscn" id="4_m3qso"]
 [ext_resource type="AudioStream" uid="uid://ipm0inop5eat" path="res://Art/Medieval Vol. 2 6.ogg" id="5_o7inf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yp1c"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0rq2"]
+bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijfl5"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 0.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1o23"]
+content_margin_left = 1.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.698039, 0.0823529, 0.141176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyklh"]
+bg_color = Color(0.458824, 0.670588, 0.313726, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2foi"]
+bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2boc"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 0.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72j4q"]
+content_margin_left = 1.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.458824, 0.670588, 0.313726, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfqgx"]
+bg_color = Color(0.698039, 0.0823529, 0.141176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [node name="Combat" type="Node"]
 script = ExtResource("1_ira6s")
@@ -27,9 +122,124 @@ scale = Vector2(7, 7)
 position = Vector2(1600, 592)
 scale = Vector2(7, 7)
 
-[node name="Combat_HUD" parent="." instance=ExtResource("4_m3qso")]
-
 [node name="BG_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o7inf")
 volume_db = -68.396
 autoplay = true
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -216.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yp1c")
+text = "ATTACK"
+
+[node name="PlayerStats" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 720.0
+offset_right = -1280.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v0rq2")
+
+[node name="PlayerContainer" type="VBoxContainer" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerName" type="Label" parent="PlayerStats/PlayerContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ijfl5")
+text = "PLAYER"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="PlayerStats/PlayerContainer"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_j1o23")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lyklh")
+value = 90.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlayerStats/PlayerContainer/PlayerHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyStats" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1280.0
+offset_top = 720.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u2foi")
+
+[node name="EnemyContainer" type="VBoxContainer" parent="EnemyStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyName" type="Label" parent="EnemyStats/EnemyContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_n2boc")
+text = "ENEMY"
+horizontal_alignment = 2
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="EnemyStats/EnemyContainer"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_72j4q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sfqgx")
+value = 90.0
+fill_mode = 1
