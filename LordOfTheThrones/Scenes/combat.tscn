@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=16 format=3 uid="uid://bjqgfc1tr6siy"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
 [ext_resource type="PackedScene" uid="uid://cvfl6itsuya8" path="res://Scenes/combat_player.tscn" id="2_nffw5"]
+[ext_resource type="Resource" uid="uid://grc685uk1od8" path="res://NPC/Necromancer.tres" id="2_uknne"]
 [ext_resource type="PackedScene" uid="uid://c7snc6ruap35b" path="res://Scenes/combat_necromancer.tscn" id="3_b0kdp"]
 [ext_resource type="AudioStream" uid="uid://ipm0inop5eat" path="res://Art/Medieval Vol. 2 6.ogg" id="5_o7inf"]
 
@@ -60,14 +61,6 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2foi"]
-bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2boc"]
 content_margin_left = 5.0
 content_margin_top = 5.0
@@ -102,8 +95,17 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2foi"]
+bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
 [node name="Combat" type="Node"]
 script = ExtResource("1_ira6s")
+Enemy = ExtResource("2_uknne")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -205,7 +207,38 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="EnemyContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1296.0
+offset_top = 728.0
+offset_right = -24.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyName" type="Label" parent="EnemyContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_n2boc")
+text = "ENEMY"
+horizontal_alignment = 2
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="EnemyContainer"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_72j4q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sfqgx")
+value = 90.0
+fill_mode = 1
+
+[node name="Label" type="Label" parent="EnemyContainer/EnemyHealthBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="EnemyStats" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,29 +250,3 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_u2foi")
-
-[node name="EnemyContainer" type="VBoxContainer" parent="EnemyStats"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="EnemyName" type="Label" parent="EnemyStats/EnemyContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_n2boc")
-text = "ENEMY"
-horizontal_alignment = 2
-
-[node name="EnemyHealthBar" type="ProgressBar" parent="EnemyStats/EnemyContainer"]
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_72j4q")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sfqgx")
-value = 90.0
-fill_mode = 1

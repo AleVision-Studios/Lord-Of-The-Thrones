@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://grc685uk1od8"]
+
+[ext_resource type="Texture2D" uid="uid://dqrpwdux0am51" path="res://Art/cat1.jpg" id="1_e0tvi"]
+[ext_resource type="Script" path="res://Script/BaseEnemy.cs" id="2_ym6g5"]
+
+[resource]
+script = ExtResource("2_ym6g5")
+Name = "Necromancer"
+Texture = ExtResource("1_e0tvi")
+Health = 100
+Damage = 20
