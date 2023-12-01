@@ -13,6 +13,8 @@ public partial class Combat : Node
 	public int currentEnemyHealth = 0;
 	public int currentPlayerHealth = 0;
 
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -25,7 +27,9 @@ public partial class Combat : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	}
+        //var animatedSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
+        //animatedSprite2D.Play("idle");
+    }
 
 	private void SetHealth(ProgressBar progressBar, int health, int maxHealth)
 	{
@@ -36,9 +40,14 @@ public partial class Combat : Node
 
 	private void OnAttackPressed()
 	{
-		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
-		currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
+        var animatedSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");		
+		animatedSprite2D.Play("attack");	
+		
+        //We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
+        currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
         SetHealth(GetNode<ProgressBar>("EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
+
+		
 
     }
 }
