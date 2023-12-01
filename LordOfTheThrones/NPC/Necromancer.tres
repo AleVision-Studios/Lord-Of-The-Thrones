@@ -7,5 +7,5 @@
 script = ExtResource("2_ym6g5")
 Name = "Necromancer"
 Texture = ExtResource("1_e0tvi")
-Health = 100
-Damage = 20
+Health = 80
+Damage = 5
