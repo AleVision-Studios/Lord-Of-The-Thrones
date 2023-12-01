@@ -13,4 +13,11 @@ public partial class Player : Area2D
 	{
 	}
 
+
+	private void SetIdleAnimation()
+	{
+        var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animatedSprite2D.Play("idle");
+    }
+
 }
