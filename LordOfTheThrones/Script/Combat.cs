@@ -46,6 +46,8 @@ public partial class Combat : Node
 		playerSprite2D.Play("attack");
 		enemySprite2D.Play("getHit");
 
+		GetNode<AudioStreamPlayer>("Hit_Sound").Play();
+
 		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
 		currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
 		SetHealth(GetNode<ProgressBar>("EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
@@ -53,17 +55,20 @@ public partial class Combat : Node
 		if (currentEnemyHealth == 0)
 		{
 			enemySprite2D.Play("death");
+			GetNode<AudioStreamPlayer>("Death_Sound").Play();
 		}
-
-		EnemyTurn();
+		else
+		{
+			EnemyTurn();
+		}
 	}
 
 	private void EnemyTurn()
 	{
 		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
 		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
-		playerSprite2D.Play("getHit");
-		enemySprite2D.Play("attack");
+		//enemySprite2D.Play("attack");
+		//playerSprite2D.Play("getHit");
 
 		currentPlayerHealth = Math.Max(0, currentPlayerHealth - Enemy.Damage);
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), currentPlayerHealth, _playerState.MaxHealth);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=18 format=3 uid="uid://bjqgfc1tr6siy"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://grc685uk1od8" path="res://NPC/Necromancer.tres" id="2_uknne"]
 [ext_resource type="PackedScene" uid="uid://c7snc6ruap35b" path="res://Scenes/combat_necromancer.tscn" id="3_b0kdp"]
 [ext_resource type="AudioStream" uid="uid://ipm0inop5eat" path="res://Art/Medieval Vol. 2 6.ogg" id="5_o7inf"]
+[ext_resource type="AudioStream" uid="uid://d2418nlsbydje" path="res://Art/22_Slash_04.wav" id="7_jfwcu"]
+[ext_resource type="AudioStream" uid="uid://bwm6lkspqxjrg" path="res://Art/55_Encounter_02.wav" id="8_kehq6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yp1c"]
 content_margin_left = 40.0
@@ -126,7 +128,7 @@ scale = Vector2(7, 7)
 
 [node name="BG_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o7inf")
-volume_db = -68.396
+volume_db = 1.874
 autoplay = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -260,5 +262,11 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_u2foi")
+
+[node name="Hit_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jfwcu")
+
+[node name="Death_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_kehq6")
 
 [connection signal="pressed" from="Panel/HBoxContainer/Attack" to="." method="OnAttackPressed"]
