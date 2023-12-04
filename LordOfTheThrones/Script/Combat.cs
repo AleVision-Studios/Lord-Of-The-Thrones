@@ -28,8 +28,6 @@ public partial class Combat : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//var animatedSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
-		//animatedSprite2D.Play("idle");
 	}
 
 	private void SetHealth(ProgressBar progressBar, int health, int maxHealth)
@@ -39,12 +37,15 @@ public partial class Combat : Node
 		progressBar.GetNode<Label>("Label").Text = $"HP: {health}/{maxHealth}";
 	}
 
-	private void OnAttackPressed()
+	private async void OnAttackPressed()
 	{
+		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
 		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
+		GetNode<AudioStreamPlayer>("Player_Attack_Sound").Play();
 		playerSprite2D.Play("attack");
-		enemySprite2D.Play("getHit");
+
+		await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
 
 		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
 		currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
@@ -52,18 +53,25 @@ public partial class Combat : Node
 
 		if (currentEnemyHealth == 0)
 		{
-			enemySprite2D.Play("death");
+			await RunMethodWithDelay(0, "RunEnemyDeathAnimation");
+			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
+		}
+		else
+		{
+			await RunMethodWithDelay(1000, "EnemyTurn");
+			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 		}
 
-		EnemyTurn();
 	}
 
-	private void EnemyTurn()
+	private async void EnemyTurn()
 	{
 		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
 		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
-		playerSprite2D.Play("getHit");
+		GetNode<AudioStreamPlayer>("Enemy_Attack_Sound").Play();
 		enemySprite2D.Play("attack");
+
+		await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
 
 		currentPlayerHealth = Math.Max(0, currentPlayerHealth - Enemy.Damage);
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), currentPlayerHealth, _playerState.MaxHealth);
@@ -72,14 +80,33 @@ public partial class Combat : Node
 		{
 			playerSprite2D.Play("death");
 		}
+
+		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
 	}
 
-	//private async void RunMethodWithDelay()
-	//{
-	//	GD.Print("Before delay");
-	//	await Task.Delay(1000);
-	//	GD.Print("After delay");
-	//	await Task.Run(() => EnemyTurn());
-	//}
+	private async void RunPlayerGetsHitAnimation()
+	{
+		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
+		playerSprite2D.Play("getHit");
+	}
+
+	private async void RunEnemyGetsHitAnimation()
+	{
+		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
+		enemySprite2D.Play("getHit");
+	}
+
+	private async void RunEnemyDeathAnimation()
+	{
+		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
+		enemySprite2D.Play("death");
+		GetNode<AudioStreamPlayer>("Death_Sound").Play();
+	}
+
+	private async Task RunMethodWithDelay(int delayTime, string methodName)
+	{
+		await Task.Delay(delayTime);
+		CallDeferred(methodName);
+	}
 }
 
