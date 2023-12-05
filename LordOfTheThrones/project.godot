@@ -36,3 +36,7 @@ folder_colors={
 "res://Scenes/": "yellow",
 "res://Script/": "red"
 }
+
+[gui]
+
+theme/custom_font="res://Art/Fonts/alagard.ttf"
