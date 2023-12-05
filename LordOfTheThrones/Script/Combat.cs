@@ -15,7 +15,6 @@ public partial class Combat : Node
 	public int currentPlayerHealth = 0;
 
 
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -48,7 +47,7 @@ public partial class Combat : Node
 		await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
 
 		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
-		currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
+		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(5)));
 		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
 
 		if (currentEnemyHealth == 0)
@@ -61,7 +60,6 @@ public partial class Combat : Node
 			await RunMethodWithDelay(1000, "EnemyTurn");
 			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 		}
-
 	}
 
 	private async void EnemyTurn()
@@ -73,12 +71,13 @@ public partial class Combat : Node
 
 		await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
 
-		currentPlayerHealth = Math.Max(0, currentPlayerHealth - Enemy.Damage);
+		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(10)));
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), currentPlayerHealth, _playerState.MaxHealth);
 
 		if (currentPlayerHealth == 0) 
 		{
-			playerSprite2D.Play("death");
+			await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
+			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 		}
 
 		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
@@ -103,10 +102,25 @@ public partial class Combat : Node
 		GetNode<AudioStreamPlayer>("Death_Sound").Play();
 	}
 
+	private async void RunPlayerDeathAnimation()
+	{
+		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
+		playerSprite2D.Play("death");
+		GetNode<AudioStreamPlayer>("Death_Sound").Play();
+	}
+
 	private async Task RunMethodWithDelay(int delayTime, string methodName)
 	{
 		await Task.Delay(delayTime);
 		CallDeferred(methodName);
+	}
+
+	private int RandomNumber(int maxNumber)
+	{
+		var random = new Random();
+		int result = random.Next(1, maxNumber);
+
+		return result;
 	}
 }
 
