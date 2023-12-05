@@ -19,7 +19,7 @@ public partial class Combat : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SetHealth(GetNode<ProgressBar>("EnemyContainer/EnemyHealthBar"), Enemy.Health, Enemy.Health);
+		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), Enemy.Health, Enemy.Health);
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), _playerState.CurrentHealth, _playerState.MaxHealth);
 
 		currentEnemyHealth = Enemy.Health;
@@ -49,7 +49,7 @@ public partial class Combat : Node
 
 		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
 		currentEnemyHealth = Math.Max(0, currentEnemyHealth - _playerState.Damage);
-		SetHealth(GetNode<ProgressBar>("EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
+		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
 
 		if (currentEnemyHealth == 0)
 		{
