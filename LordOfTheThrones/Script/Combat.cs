@@ -15,6 +15,10 @@ public partial class Combat : Node
 	public int currentPlayerHealth = 0;
 
 
+	public int enemyDmgBonus = 50;
+	public int playerDmgBonus = 5;
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -47,7 +51,7 @@ public partial class Combat : Node
 		await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
 
 		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
-		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(5)));
+		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(playerDmgBonus)));
 		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
 
 		if (currentEnemyHealth == 0)
@@ -71,16 +75,18 @@ public partial class Combat : Node
 
 		await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
 
-		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(10)));
+		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(enemyDmgBonus)));
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), currentPlayerHealth, _playerState.MaxHealth);
 
-		if (currentPlayerHealth == 0) 
+		if (currentPlayerHealth == 0)
 		{
 			await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
 			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 		}
-
-		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
+		else
+		{
+			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
+		}
 	}
 
 	private async void RunPlayerGetsHitAnimation()
