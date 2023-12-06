@@ -14,8 +14,7 @@ public partial class Combat : Node
 	public int currentEnemyHealth = 0;
 	public int currentPlayerHealth = 0;
 
-
-	public int enemyDmgBonus = 50;
+	public int enemyDmgBonus = 20;
 	public int playerDmgBonus = 5;
 
 
@@ -33,7 +32,7 @@ public partial class Combat : Node
 	{
 	}
 
-	private void SetHealth(ProgressBar progressBar, int health, int maxHealth)
+	public void SetHealth(ProgressBar progressBar, int health, int maxHealth)
 	{
 		progressBar.Value = health;
 		progressBar.MaxValue = maxHealth;
@@ -42,51 +41,82 @@ public partial class Combat : Node
 
 	private async void OnAttackPressed()
 	{
-		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
-		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
-		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
-		GetNode<AudioStreamPlayer>("Player_Attack_Sound").Play();
-		playerSprite2D.Play("attack");
-
+		DisableAttackButton();
+		RunPlayerAttackAnimation();
 		await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
-
-		//We use Math.Max so that it always returns the biggest number, if enemy hp goes below 0 it always gives us the 0.
-		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(playerDmgBonus)));
-		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), currentEnemyHealth, Enemy.Health);
+		ApplyDamageToEnemy();
 
 		if (currentEnemyHealth == 0)
 		{
 			await RunMethodWithDelay(0, "RunEnemyDeathAnimation");
-			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
+			DisableAttackButton();
 		}
 		else
 		{
 			await RunMethodWithDelay(1000, "EnemyTurn");
-			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
+			DisableAttackButton();
 		}
+	}
+
+	private void DisableAttackButton()
+	{
+		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
+	}
+
+	private void EnableAttackButton()
+	{
+		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
+	}
+
+	private void ApplyDamageToEnemy()
+	{
+		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
+
+		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(playerDmgBonus)));
+		SetHealth(enemyHealthBar, currentEnemyHealth, Enemy.Health);
 	}
 
 	private async void EnemyTurn()
 	{
-		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
-		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
-		GetNode<AudioStreamPlayer>("Enemy_Attack_Sound").Play();
-		enemySprite2D.Play("attack");
-
+		PlayEnemyAttackAnimation();
 		await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
-
-		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(enemyDmgBonus)));
-		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), currentPlayerHealth, _playerState.MaxHealth);
+		ApplyDamageToPlayer();
 
 		if (currentPlayerHealth == 0)
 		{
 			await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
-			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
+			DisableAttackButton();
 		}
 		else
 		{
-			GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
+			EnableAttackButton();
 		}
+	}
+
+	private void PlayEnemyAttackAnimation()
+	{
+		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
+		var enemyAttackSound = GetNode<AudioStreamPlayer>("Enemy_Attack_Sound");
+
+		enemyAttackSound.Play();
+		enemySprite2D.Play("attack");
+	}
+
+	public void ApplyDamageToPlayer()
+	{
+		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
+
+		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(enemyDmgBonus)));
+		SetHealth(playerHealthBar, currentPlayerHealth, _playerState.MaxHealth);
+	}
+
+	private void RunPlayerAttackAnimation()
+	{
+		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
+		var attackSound = GetNode<AudioStreamPlayer>("Player_Attack_Sound");
+
+		attackSound.Play();
+		playerSprite2D.Play("attack");
 	}
 
 	private async void RunPlayerGetsHitAnimation()
@@ -121,7 +151,7 @@ public partial class Combat : Node
 		CallDeferred(methodName);
 	}
 
-	private int RandomNumber(int maxNumber)
+	public int RandomNumber(int maxNumber)
 	{
 		var random = new Random();
 		int result = random.Next(1, maxNumber);
