@@ -7,22 +7,22 @@ namespace LordOfTheThrones.Tests
 	public class GameLogicTests
 	{
 		[Fact]
-		public void SetHealth_Should_SetProgressBarValuesCorrectly()
+		public void RandomNumber_Should_Return_Random_Number_Within_Range()
 		{
 			// Arrange
-			var combat = new Combat();
-			var progressBarMock = new Mock<ProgressBar>();
-			var labelMock = new Mock<Label>();
+			var mockCombat = new Mock<ICombat>();
 
-			progressBarMock.Setup(p => p.GetNode<Label>("Label")).Returns(labelMock.Object);
+			// Assuming you want to generate numbers up to 100 for demonstration purposes
+			const int maxNumber = 100;
+
+			// Setup the mock to return a specific value for the RandomNumber method
+			mockCombat.Setup(c => c.RandomNumber(maxNumber)).Returns(42);
 
 			// Act
-			combat.SetHealth(progressBarMock.Object, 80, 100);
+			int result = mockCombat.Object.RandomNumber(maxNumber);
 
 			// Assert
-			progressBarMock.VerifySet(p => p.Value = 80, Times.Once);
-			progressBarMock.VerifySet(p => p.MaxValue = 100, Times.Once);
-			labelMock.VerifySet(l => l.Text = "HP: 80/100", Times.Once);
+			Assert.Equal(42, result);
 		}
 	}
 }

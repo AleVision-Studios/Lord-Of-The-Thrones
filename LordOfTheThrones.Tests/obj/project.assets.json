@@ -5726,8 +5726,8 @@
     },
     "LordOfTheThrones/1.0.0": {
       "type": "project",
-      "path": "../LordOfTheThrones/LordOfTheThrones.csproj",
-      "msbuildProject": "../LordOfTheThrones/LordOfTheThrones.csproj"
+      "path": "../LORDOFTHETHRONES/LordOfTheThrones.csproj",
+      "msbuildProject": "../LORDOFTHETHRONES/LordOfTheThrones.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5747,11 +5747,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
+      "projectUniqueName": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
       "projectName": "LordOfTheThrones.Tests",
-      "projectPath": "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
+      "projectPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
       "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LordOfTheThrones.Tests\\obj\\",
+      "outputPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5774,8 +5774,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
-              "projectPath": "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LORDOFTHETHRONES\\LordOfTheThrones.csproj"
+            "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
+              "projectPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj"
             }
           }
         }
@@ -5831,7 +5831,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

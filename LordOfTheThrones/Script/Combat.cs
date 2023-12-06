@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class Combat : Node
+public partial class Combat : Node, ICombat
 {
 	[Export]
 	public BaseEnemy Enemy = null;
@@ -18,12 +18,14 @@ public partial class Combat : Node
 	public int playerDmgBonus = 5;
 
 
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), Enemy.Health, Enemy.Health);
 		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), _playerState.CurrentHealth, _playerState.MaxHealth);
 
+		currentEnemyHealth = Enemy.Health;
 		currentEnemyHealth = Enemy.Health;
 		currentPlayerHealth = _playerState.CurrentHealth;
 	}
@@ -41,20 +43,30 @@ public partial class Combat : Node
 
 	private async void OnAttackPressed()
 	{
-		DisableAttackButton();
-		RunPlayerAttackAnimation();
-		await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
-		ApplyDamageToEnemy();
+		try
+		{
+			DisableAttackButton();
+			RunPlayerAttackAnimation();
+			await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
 
-		if (currentEnemyHealth == 0)
-		{
-			await RunMethodWithDelay(0, "RunEnemyDeathAnimation");
-			DisableAttackButton();
+			ApplyDamageToEnemy();
+
+
+			if (currentEnemyHealth == 0)
+			{
+				await RunMethodWithDelay(0, "RunEnemyDeathAnimation");
+				DisableAttackButton();
+			}
+			else
+			{
+				await RunMethodWithDelay(1000, "EnemyTurn");
+				DisableAttackButton();
+			}
+
 		}
-		else
+		catch (Exception ex)
 		{
-			await RunMethodWithDelay(1000, "EnemyTurn");
-			DisableAttackButton();
+			GD.PrintErr($"Exception in EnemyTurn: {ex}");
 		}
 	}
 
@@ -68,7 +80,7 @@ public partial class Combat : Node
 		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
 	}
 
-	private void ApplyDamageToEnemy()
+	public void ApplyDamageToEnemy()
 	{
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 
@@ -78,18 +90,27 @@ public partial class Combat : Node
 
 	private async void EnemyTurn()
 	{
-		PlayEnemyAttackAnimation();
-		await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
-		ApplyDamageToPlayer();
+		try
+		{
+			PlayEnemyAttackAnimation();
+			await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
 
-		if (currentPlayerHealth == 0)
-		{
-			await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
-			DisableAttackButton();
+			ApplyDamageToPlayer();
+
+			if (currentPlayerHealth == 0)
+			{
+				await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
+				DisableAttackButton();
+			}
+			else
+			{
+				EnableAttackButton();
+			}
+
 		}
-		else
+		catch (Exception ex)
 		{
-			EnableAttackButton();
+			GD.PrintErr($"Exception in EnemyTurn: {ex}");
 		}
 	}
 
@@ -145,7 +166,7 @@ public partial class Combat : Node
 		GetNode<AudioStreamPlayer>("Death_Sound").Play();
 	}
 
-	private async Task RunMethodWithDelay(int delayTime, string methodName)
+	public async Task RunMethodWithDelay(int delayTime, string methodName)
 	{
 		await Task.Delay(delayTime);
 		CallDeferred(methodName);
@@ -153,10 +174,9 @@ public partial class Combat : Node
 
 	public int RandomNumber(int maxNumber)
 	{
-		var random = new Random();
-		int result = random.Next(1, maxNumber);
+		Random random = new Random();
 
-		return result;
+		return random.Next(1, maxNumber);
 	}
 }
 

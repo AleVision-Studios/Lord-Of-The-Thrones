@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xR2xLWUjEvbRKXtR0Bqi5UQnSG5RAHMLwgqndT8ah97uUTza7ZEug8uEQHNLOE/CdHC+hofZisiEHzAEoWuS0w==",
+  "dgSpecHash": "TtXOdMJ1oLnM2EnxyNDc77H/M19wWXXHUX3ja4tdk+gLNOM150Ba9T6DAXLXKr2XOcshD/yj9AQET4ImHIOJZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jonat\\Desktop\\Skola\\CleanCode & Devops\\Lord-Of-The-Thrones\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
+  "projectFilePath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jonat\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\jonat\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",

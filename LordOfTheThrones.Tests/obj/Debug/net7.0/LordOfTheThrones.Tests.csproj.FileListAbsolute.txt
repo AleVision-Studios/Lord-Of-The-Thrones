@@ -107,3 +107,4 @@ C:\USERS\JONAT\DESKTOP\SKOLA\CLEANCODE & DEVOPS\LORD-OF-THE-THRONES\LordOfTheThr
 C:\USERS\JONAT\DESKTOP\SKOLA\CLEANCODE & DEVOPS\LORD-OF-THE-THRONES\LordOfTheThrones.Tests\obj\Debug\net7.0\LordOfTheThrones.Tests.pdb
 C:\USERS\JONAT\DESKTOP\SKOLA\CLEANCODE & DEVOPS\LORD-OF-THE-THRONES\LordOfTheThrones.Tests\obj\Debug\net7.0\LordOfTheThrones.Tests.genruntimeconfig.cache
 C:\USERS\JONAT\DESKTOP\SKOLA\CLEANCODE & DEVOPS\LORD-OF-THE-THRONES\LordOfTheThrones.Tests\obj\Debug\net7.0\ref\LordOfTheThrones.Tests.dll
+C:\USERS\JONAT\DESKTOP\SKOLA\CLEANCODE & DEVOPS\LORD-OF-THE-THRONES\LordOfTheThrones.Tests\obj\Debug\net7.0\LordOfTheThrones.Tests.sourcelink.json
