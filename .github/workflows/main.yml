@@ -1,0 +1,36 @@
+name: Godot CI 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4.x.x
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3.2.0
+      with:         
+        dotnet-version: 7.0.x
+
+    - name: Set up Godot
+      uses: game-ci/setup-godot@v2
+      with:
+        version: '4.2'
+
+    - name: Build
+      run: dotnet build ./LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-restore
+
+    - name: Test
+      run: dotnet test ./LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-build --logger "html" --results-directory "test_results"
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: test_results
