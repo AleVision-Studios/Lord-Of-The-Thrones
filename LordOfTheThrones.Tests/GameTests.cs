@@ -46,6 +46,10 @@ namespace LordOfTheThrones.Tests
         {
             // Arrange
             int droppedCombatGold = 10;
+            var mockRandom = new Mock<Random>();
+            mockRandom.Setup(r => r.Next(2)).Returns(0);
+			Random rnd = new Random();
+			GambleManager.rnd = mockRandom.Object;
 
             // Act
             int result = GambleManager.DoubleOrNothing(droppedCombatGold);
@@ -59,6 +63,11 @@ namespace LordOfTheThrones.Tests
         {
             // Arrange           
             int droppedCombatGold = 10;
+            var mockRandom = new Mock<Random>();
+            mockRandom.Setup(r => r.Next(2)).Returns(1);
+            Random rnd = new Random();
+            GambleManager.rnd = mockRandom.Object;
+
 
             // Assume that the gamble function will always lose in this test
             // Mock the random behavior or use a deterministic approach for testing
