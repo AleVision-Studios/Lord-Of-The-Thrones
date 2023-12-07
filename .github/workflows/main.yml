@@ -1,4 +1,4 @@
-name: Godot CI 
+name: CI 
 
 on:
   push:
@@ -17,11 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v3.2.0
       with:         
         dotnet-version: 7.0.x
-
-    - name: Set up Godot
-      uses: game-ci/setup-godot@v2
-      with:
-        version: '4.2'
 
     - name: Build
       run: dotnet build ./LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-restore
