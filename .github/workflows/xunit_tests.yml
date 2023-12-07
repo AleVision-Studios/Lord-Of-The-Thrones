@@ -15,10 +15,10 @@ jobs:
         dotnet-version: 7.0.x
           
     - name: Build
-      run: dotnet build .LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-restore
+      run: dotnet build ./LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-restore
 
     - name: Test
-      run: dotnet test .LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-build --logger "html" --results-directory "test_results"
+      run: dotnet test ./LordOfTheThrones.Tests/LordOfTheThrones.Tests.csproj --no-build --logger "html" --results-directory "test_results"
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
