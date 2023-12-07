@@ -23,12 +23,10 @@ jobs:
       run: echo "Current Branch:$GITHUB_REF"
       
     - name: Setup Godot
-      uses: Vitorgus/Setup-Godot@v1.1.1
+      uses:  paulloz/godot-action@v1.2.2
       with:
-        godot-version: '4.2'
+        version: '4.2'
 
-          
-        
     - name: Export Project
       run: godot -v --export "Windows Desktop" export_folder  
       
