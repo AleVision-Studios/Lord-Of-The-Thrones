@@ -2,36 +2,32 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class Combat : Node, ICombat
+public partial class Combat : Node
 {
 	[Export]
 	public BaseEnemy Enemy = null;
 
-	//public BaseEnemy enemy;
+	private PlayerState _playerState = new PlayerState();
 
-	PlayerState _playerState = new PlayerState();
+	private int _currentEnemyHealth = 0;
+	private int _currentPlayerHealth = 0;
 
-	public int currentEnemyHealth = 0;
-	public int currentPlayerHealth = 0;
+	private int _enemyDamageBonus = 20;
+	private int _playerDamageBonus = 5;
 
-	public int enemyDmgBonus = 20;
-	public int playerDmgBonus = 5;
-
-
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SetHealth(GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar"), Enemy.Health, Enemy.Health);
-		SetHealth(GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar"), _playerState.CurrentHealth, _playerState.MaxHealth);
-
-		currentEnemyHealth = Enemy.Health;
-		currentEnemyHealth = Enemy.Health;
-		currentPlayerHealth = _playerState.CurrentHealth;
+		InitializeUI();
+		InitializeHealthValues();
 	}
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+
+	private void InitializeUI()
 	{
+		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
+		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
+
+		SetHealth(enemyHealthBar, Enemy.Health, Enemy.Health);
+		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
 	}
 
 	public void SetHealth(ProgressBar progressBar, int health, int maxHealth)
@@ -41,32 +37,29 @@ public partial class Combat : Node, ICombat
 		progressBar.GetNode<Label>("Label").Text = $"HP: {health}/{maxHealth}";
 	}
 
-	private async void OnAttackPressed()
+	private void InitializeHealthValues()
 	{
-		try
+		_currentEnemyHealth = Enemy.Health;
+		_currentPlayerHealth = _playerState.CurrentHealth;
+	}
+
+	public async void OnAttackPressed()
+	{
+		DisableAttackButton();
+		RunPlayerAttackAnimation();
+		await RunMethodWithDelay(500, RunEnemyGetsHitAnimation);
+
+		ApplyDamageToEnemy();
+
+		if (_currentEnemyHealth == 0)
 		{
+			await RunMethodWithDelay(0, RunEnemyDeathAnimation);
 			DisableAttackButton();
-			RunPlayerAttackAnimation();
-			await RunMethodWithDelay(500, "RunEnemyGetsHitAnimation");
-
-			ApplyDamageToEnemy();
-
-
-			if (currentEnemyHealth == 0)
-			{
-				await RunMethodWithDelay(0, "RunEnemyDeathAnimation");
-				DisableAttackButton();
-			}
-			else
-			{
-				await RunMethodWithDelay(1000, "EnemyTurn");
-				DisableAttackButton();
-			}
-
 		}
-		catch (Exception ex)
+		else
 		{
-			GD.PrintErr($"Exception in EnemyTurn: {ex}");
+			await RunMethodWithDelay(1000, EnemyTurn);
+			DisableAttackButton();
 		}
 	}
 
@@ -84,33 +77,25 @@ public partial class Combat : Node, ICombat
 	{
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 
-		currentEnemyHealth = Math.Max(0, currentEnemyHealth - (_playerState.Damage + RandomNumber(playerDmgBonus)));
-		SetHealth(enemyHealthBar, currentEnemyHealth, Enemy.Health);
+		_currentEnemyHealth = Math.Max(0, _currentEnemyHealth - (_playerState.Damage + RandomNumber(_playerDamageBonus)));
+		SetHealth(enemyHealthBar, _currentEnemyHealth, Enemy.Health);
 	}
 
 	private async void EnemyTurn()
 	{
-		try
+		PlayEnemyAttackAnimation();
+		await RunMethodWithDelay(1500, RunPlayerGetsHitAnimation);
+
+		ApplyDamageToPlayer();
+
+		if (_currentPlayerHealth == 0)
 		{
-			PlayEnemyAttackAnimation();
-			await RunMethodWithDelay(1500, "RunPlayerGetsHitAnimation");
-
-			ApplyDamageToPlayer();
-
-			if (currentPlayerHealth == 0)
-			{
-				await RunMethodWithDelay(0, "RunPlayerDeathAnimation");
-				DisableAttackButton();
-			}
-			else
-			{
-				EnableAttackButton();
-			}
-
+			await RunMethodWithDelay(0, RunPlayerDeathAnimation);
+			DisableAttackButton();
 		}
-		catch (Exception ex)
+		else
 		{
-			GD.PrintErr($"Exception in EnemyTurn: {ex}");
+			EnableAttackButton();
 		}
 	}
 
@@ -127,8 +112,8 @@ public partial class Combat : Node, ICombat
 	{
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
 
-		currentPlayerHealth = Math.Max(0, currentPlayerHealth - (Enemy.Damage + RandomNumber(enemyDmgBonus)));
-		SetHealth(playerHealthBar, currentPlayerHealth, _playerState.MaxHealth);
+		_currentPlayerHealth = Math.Max(0, _currentPlayerHealth - (Enemy.Damage + RandomNumber(_enemyDamageBonus)));
+		SetHealth(playerHealthBar, _currentPlayerHealth, _playerState.MaxHealth);
 	}
 
 	private void RunPlayerAttackAnimation()
@@ -140,43 +125,40 @@ public partial class Combat : Node, ICombat
 		playerSprite2D.Play("attack");
 	}
 
-	private async void RunPlayerGetsHitAnimation()
+	private void RunPlayerGetsHitAnimation()
 	{
 		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
 		playerSprite2D.Play("getHit");
 	}
 
-	private async void RunEnemyGetsHitAnimation()
+	private void RunEnemyGetsHitAnimation()
 	{
 		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
 		enemySprite2D.Play("getHit");
 	}
 
-	private async void RunEnemyDeathAnimation()
+	private void RunEnemyDeathAnimation()
 	{
 		var enemySprite2D = GetNode<AnimatedSprite2D>("Necromancer/AnimatedSprite2D");
 		enemySprite2D.Play("death");
 		GetNode<AudioStreamPlayer>("Death_Sound").Play();
 	}
 
-	private async void RunPlayerDeathAnimation()
+	private void RunPlayerDeathAnimation()
 	{
 		var playerSprite2D = GetNode<AnimatedSprite2D>("Player/AnimatedSprite2D");
 		playerSprite2D.Play("death");
 		GetNode<AudioStreamPlayer>("Death_Sound").Play();
 	}
 
-	public async Task RunMethodWithDelay(int delayTime, string methodName)
+	public static async Task RunMethodWithDelay(int delayTime, Action method)
 	{
 		await Task.Delay(delayTime);
-		CallDeferred(methodName);
+		method.Invoke();
 	}
-
-	public int RandomNumber(int maxNumber)
+	public static int RandomNumber(int maxNumber)
 	{
 		Random random = new Random();
-
 		return random.Next(1, maxNumber);
 	}
 }
-
