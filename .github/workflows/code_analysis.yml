@@ -10,7 +10,7 @@ on:
 
 jobs:
   display_info_and_lint:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
