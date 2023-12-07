@@ -63,11 +63,13 @@ public partial class Combat : Node
 		}
 	}
 
+	//Disables the AttackButton, use this during the enemies Turns,
 	private void DisableAttackButton()
 	{
 		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = true;
 	}
 
+	//Enables the button again after the enemies turn is completed.
 	private void EnableAttackButton()
 	{
 		GetNode<Button>("Panel/HBoxContainer/Attack").Disabled = false;
