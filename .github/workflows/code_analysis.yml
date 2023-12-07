@@ -1,29 +1,28 @@
-name: Code Analyis
+name: Lint C# Code
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  display_info_and_lint:
+  lint:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
-      
-    - name: Display Project Name
-      run: echo "Project Name:$GITHUB_REPOSITORY"
-      
-    - name: Display Current Branch
-      run: echo "Current Branch:$GITHUB_REF"
-      
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1' # You can change this version to your desired .NET version
+
     - name: Install dotnet format tool
       run: dotnet tool install -g dotnet-format --version 5.0.18303
 
     - name: Run dotnet format
-      run: dotnet format --check --verbosity diagnostic
+      run: dotnet format --check --verbosity diagnostic ${{ github.workspace }}
