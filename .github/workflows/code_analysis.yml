@@ -22,5 +22,8 @@ jobs:
     - name: Display Current Branch
       run: echo "Current Branch:$GITHUB_REF"
       
-    - name: Check C# Code
-      run: godot-csharp -s tools/msbuild/godot-csproj-builder.cs  
+    - name: Install dotnet format tool
+      run: dotnet tool install -g dotnet-format --version 5.0.18303
+
+    - name: Run dotnet format
+      run: dotnet format --check --verbosity diagnostic
