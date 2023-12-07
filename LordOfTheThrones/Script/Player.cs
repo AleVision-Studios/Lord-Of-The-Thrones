@@ -15,6 +15,7 @@ public partial class Player : Area2D
 	}
 
 
+	//We use this method to make sure the player always returns to an idle animation after they've done an action
 	private void SetIdleAnimation()
 	{
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
