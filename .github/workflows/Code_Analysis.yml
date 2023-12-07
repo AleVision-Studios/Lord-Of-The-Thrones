@@ -1,0 +1,34 @@
+name: Code Analyis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  display_info_and_lint:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Display Project Name
+      run: echo "Project Name: $GITHUB_REPOSITORY"
+      
+    - name: Display Current Branch
+      run: echo "Current Branch: $GITHUB_REF"
+      
+    - name: Set up Godot
+      uses: woongjaelee/setup-godot@v2
+      with:
+        version: '4.2'  
+        
+    - name: Export Project
+      run: godot -v --export "Windows Desktop" export_folder  
+      
+    - name: Check C# Code
+      run: godot-csharp -s tools/msbuild/godot-csproj-builder.cs  
