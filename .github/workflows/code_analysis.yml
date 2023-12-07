@@ -25,7 +25,7 @@ jobs:
     - name: Setup Godot
       uses:  paulloz/godot-action@v1.2.2
       with:
-        version: '4.2'
+        version: '4.0'
 
     - name: Export Project
       run: godot -v --export "Windows Desktop" export_folder  
