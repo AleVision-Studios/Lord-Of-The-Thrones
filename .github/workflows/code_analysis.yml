@@ -19,10 +19,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '3.1' # You can change this version to your desired .NET version
+        dotnet-version: '7.0' # You can change this version to your desired .NET version
 
     - name: Install dotnet format tool
-      run: dotnet tool install -g dotnet-format --version 5.0.18303
+      run: dotnet tool install -g dotnet-format --version 5.0.211103+b95e1694941ca2595941f1c9cd0d9727b6c53d43
 
     - name: Run dotnet format
-      run: dotnet format --check --verbosity diagnostic ${{ github.workspace }}
+      run: dotnet format --check --verbosity diagnostic ${{ github.workspace }}/LordOfTheThrones/LordOfTheThrones.sln
