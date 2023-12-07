@@ -3,7 +3,7 @@ using System;
 
 public partial class GambleManager : Node
 {
-    private static Random rnd = new Random();
+    public static Random rnd = new Random();
 
 
     public static int DoubleOrNothing(int droppedCombatGold)
