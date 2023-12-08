@@ -30,7 +30,7 @@ public partial class Combat : Node
 		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
 	}
 
-	public void SetHealth(ProgressBar progressBar, int health, int maxHealth)
+	public static void SetHealth(ProgressBar progressBar, int health, int maxHealth)
 	{
 		progressBar.Value = health;
 		progressBar.MaxValue = maxHealth;

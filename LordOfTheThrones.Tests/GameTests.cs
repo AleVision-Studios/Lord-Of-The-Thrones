@@ -8,12 +8,13 @@ namespace LordOfTheThrones.Tests
 	//Due to Godot all of our methods need to be static for us to be able to do tests on them.
 	public class GameTests
 	{
-		[Fact]
-		public void RandomNumber_Should_Return_Random_Number_Within_Range()
+		[Theory]
+		[InlineData(10)] 
+		[InlineData(20)]
+		[InlineData(30)]
+		public void RandomNumber_Should_Return_Random_Number_Within_Range(int maxNumber)
 		{
 			// Arrange
-			const int maxNumber = 100;
-
 			// Act
 			int result = Combat.RandomNumber(maxNumber);
 
@@ -21,11 +22,13 @@ namespace LordOfTheThrones.Tests
 			Assert.InRange(result, 1, maxNumber);
 		}
 
-		[Fact]
-		public async Task RunMethodWithDelay_ShouldRunMethodAfterDelay()
+		[Theory]
+		[InlineData(0)]    
+		[InlineData(500)]  
+		[InlineData(1000)] 
+		public async Task RunMethodWithDelay_ShouldRunMethodAfterDelay(int delayTime)
 		{
 			// Arrange
-			int delayTime = 1000; // 1 second delay
 			bool methodExecuted = false;
 
 			Action testMethod = () =>
@@ -41,43 +44,42 @@ namespace LordOfTheThrones.Tests
 		}
 
 		//Checks so that when you win the gold gets Doubled.
-        [Fact]
-        public void DoubleOrNothing_ShouldDoubleGoldOnWin()
-        {
-            // Arrange
-            int droppedCombatGold = 10;
-            var mockRandom = new Mock<Random>();
-            mockRandom.Setup(r => r.Next(2)).Returns(0);
-			Random rnd = new Random();
+		[Theory]
+		[InlineData(10)] 
+		[InlineData(15)] 
+		[InlineData(0)]  
+		public void DoubleOrNothing_ShouldDoubleGoldOnWin(int droppedCombatGold)
+		{
+			// Arrange
+			var mockRandom = new Mock<Random>();
+			mockRandom.Setup(r => r.Next(2)).Returns(0);
 			GambleManager.rnd = mockRandom.Object;
 
-            // Act
-            int result = GambleManager.DoubleOrNothing(droppedCombatGold);
+			// Act
+			int result = GambleManager.DoubleOrNothing(droppedCombatGold);
 
-            // Assert
-            Assert.Equal(droppedCombatGold * 2, result);
-        }
+			// Assert
+			Assert.Equal(droppedCombatGold * 2, result);
+		}
+
 		//Checks so that when you lose you get no gold.
-        [Fact]
-        public void DoubleOrNothing_ShouldReturnZeroOnLose()
-        {
-            // Arrange           
-            int droppedCombatGold = 10;
-            var mockRandom = new Mock<Random>();
-            mockRandom.Setup(r => r.Next(2)).Returns(1);
-            Random rnd = new Random();
-            GambleManager.rnd = mockRandom.Object;
+		[Theory]
+		[InlineData(10)] 
+		[InlineData(20)] 
+		[InlineData(0)]  
+		public void DoubleOrNothing_ShouldReturnZeroOnLose(int droppedCombatGold)
+		{
+			// Arrange
+			var mockRandom = new Mock<Random>();
+			mockRandom.Setup(r => r.Next(2)).Returns(1);
+			GambleManager.rnd = mockRandom.Object;
 
+			// Act
+			int result = GambleManager.DoubleOrNothing(droppedCombatGold);
 
-            // Assume that the gamble function will always lose in this test
-            // Mock the random behavior or use a deterministic approach for testing
-            // Act
-            int result = GambleManager.DoubleOrNothing(droppedCombatGold);
+			// Assert
+			Assert.Equal(0, result);
+		}
 
-            // Assert
-            Assert.Equal(0, result);
-        }
-
-
-    }
+	}
 }
