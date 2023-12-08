@@ -12,8 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://cnsf12sq63gi4" path="res://Art/69_Enemy_death_01.wav" id="8_va6gs"]
 [ext_resource type="AudioStream" uid="uid://duljii3l3krie" path="res://Art/45_Charge_05.wav" id="9_sthue"]
 [ext_resource type="StyleBox" uid="uid://cq7twvdargjr2" path="res://Art/Buttons/CombatHover.tres" id="9_w07ft"]
-[ext_resource type="StyleBox" uid="uid://bctkfvb7jw31i" path="res://Scenes/CombatPressed.tres" id="10_62w0w"]
-[ext_resource type="StyleBox" uid="uid://iyr4q0a3jj4k" path="res://Scenes/CombatDisabled.tres" id="11_8sdxc"]
+[ext_resource type="StyleBox" uid="uid://bctkfvb7jw31i" path="res://Art/Buttons/CombatPressed.tres" id="10_62w0w"]
+[ext_resource type="StyleBox" uid="uid://iyr4q0a3jj4k" path="res://Art/Buttons/CombatDisabled.tres" id="11_8sdxc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0rq2"]
 bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
