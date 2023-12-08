@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://cq7twvdargjr2" path="res://Art/Buttons/CombatHover.tres" id="3_3ux5v"]
 [ext_resource type="StyleBox" uid="uid://bctkfvb7jw31i" path="res://Art/Buttons/CombatPressed.tres" id="4_nn6j2"]
 
-[node name="MainMenu" type="TextureRect"]
+[node name="StartScreen" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

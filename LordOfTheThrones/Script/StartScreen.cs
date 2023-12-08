@@ -7,7 +7,7 @@ public partial class StartScreen : Node
 	public override void _Ready()
 	{
         GetNode<Button>("CenterContainer/VBoxContainer/Play").Pressed +=
-            () => GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene("game.tscn");
+            () => GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene("Scenes/game.tscn");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
