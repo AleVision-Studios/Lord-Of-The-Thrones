@@ -6,6 +6,7 @@ public partial class PlayerState : Node
 	public int CurrentHealth = 100;
 	public int MaxHealth = 100;
 	public int Damage = 10;
+	public string PlayerName = "Player";
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

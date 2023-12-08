@@ -25,6 +25,7 @@ public partial class Combat : Node
 	{
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
+		GetNode<Label>("PlayerStats/PlayerContainer/PlayerName").Text = StartScreen.playerName;
 
 		SetHealth(enemyHealthBar, Enemy.Health, Enemy.Health);
 		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
