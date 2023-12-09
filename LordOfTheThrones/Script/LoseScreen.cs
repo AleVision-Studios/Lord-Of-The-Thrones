@@ -1,14 +1,8 @@
 using Godot;
 using System;
 
-public partial class PlayerState : Node
+public partial class LoseScreen : CanvasLayer
 {
-	public int CurrentHealth = 100;
-	public int MaxHealth = 100;
-	public int Damage = 10;
-	public static int TotalGold = 0;
-	public string PlayerName = "Player";
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -19,6 +13,13 @@ public partial class PlayerState : Node
 	{
 	}
 
+	public void OnTryAgainPressed()
+	{
+		GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene("Scenes/game.tscn");
+	}
 
-
+	public void OnGiveUpPressed()
+	{
+		GetTree().Quit();
+	}
 }

@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2lhp13amybea"]
+
+[ext_resource type="Script" path="res://Script/LoseScreen.cs" id="1_wu6ae"]
+[ext_resource type="PackedScene" uid="uid://3ey4use1vekc" path="res://Scenes/skull.tscn" id="2_2j3a8"]
+
+[node name="LoseScreen" type="CanvasLayer"]
+script = ExtResource("1_wu6ae")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.361
+anchor_right = 0.656
+anchor_bottom = 0.639
+offset_left = -0.480042
+offset_top = 0.119965
+offset_right = 0.47998
+offset_bottom = -0.120056
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="TryAgain" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Try Again"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Give Up"
+
+[node name="Skull" parent="." instance=ExtResource("2_2j3a8")]
+position = Vector2(1152, 528)
+
+[node name="Skull2" parent="." instance=ExtResource("2_2j3a8")]
+position = Vector2(768, 522)
+
+[connection signal="pressed" from="Panel/VBoxContainer/TryAgain" to="." method="OnTryAgainPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="OnGiveUpPressed"]

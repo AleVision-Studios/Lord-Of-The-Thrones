@@ -26,6 +26,7 @@ public partial class Combat : Node
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
 		GetNode<Label>("PlayerStats/PlayerContainer/PlayerName").Text = StartScreen.playerName;
+		GetNode<Label>("Panel/Gold").Text = PlayerState.TotalGold.ToString();
 
 		SetHealth(enemyHealthBar, Enemy.Health, Enemy.Health);
 		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
@@ -56,12 +57,26 @@ public partial class Combat : Node
 		{
 			await RunMethodWithDelay(0, RunEnemyDeathAnimation);
 			DisableAttackButton();
+			await RunMethodWithDelay(3000, ShowWinScreen);
 		}
 		else
 		{
 			await RunMethodWithDelay(1000, EnemyTurn);
 			DisableAttackButton();
 		}
+	}
+
+	private void ShowWinScreen()
+	{
+		GetNode<AudioStreamPlayer>("Winning_Sound").Play();
+		GetNode<CanvasLayer>("WinScreen").Visible = true;
+	}
+
+	private void ShowLoseScreen()
+	{
+		GetNode<AudioStreamPlayer>("Losing_Sound").Play();
+		GetNode<CanvasLayer>("LoseScreen").Visible = true;
+		PlayerState.TotalGold = 0;
 	}
 
 	//Disables the AttackButton, use this during the enemies Turns,
@@ -95,6 +110,8 @@ public partial class Combat : Node
 		{
 			await RunMethodWithDelay(0, RunPlayerDeathAnimation);
 			DisableAttackButton();
+			await RunMethodWithDelay(1000, ShowLoseScreen);
+
 		}
 		else
 		{

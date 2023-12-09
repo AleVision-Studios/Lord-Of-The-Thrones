@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://5jhddwjd5g80"]
+
+[ext_resource type="Texture2D" uid="uid://bwfdp5ok3fla8" path="res://Art/coin.png" id="1_j4xtr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6trxm"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ennsu"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05u5m"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0ij4"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc0td"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woisn"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrh4l"]
+atlas = ExtResource("1_j4xtr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jscn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6trxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ennsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05u5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ij4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc0td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woisn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrh4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc0td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ij4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05u5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ennsu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Coin" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_jscn7")
+autoplay = "default"
+frame_progress = 0.0532335

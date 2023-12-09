@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://vk7wv5v8hshy"]
+
+[ext_resource type="Script" path="res://Script/WinScreen.cs" id="1_56kyq"]
+[ext_resource type="PackedScene" uid="uid://5jhddwjd5g80" path="res://Scenes/coin.tscn" id="1_gxynp"]
+[ext_resource type="PackedScene" uid="uid://dt34rw5cowy0d" path="res://Scenes/chest.tscn" id="2_0grl8"]
+[ext_resource type="AudioStream" uid="uid://cvm5d163mraxp" path="res://Art/013_Confirm_03.wav" id="4_3rtyo"]
+[ext_resource type="AudioStream" uid="uid://dtt0squ8kb1sq" path="res://Art/033_Denied_03.wav" id="5_cgkwl"]
+[ext_resource type="AudioStream" uid="uid://dxc10wkv4q2mi" path="res://Art/079_Buy_sell_01.wav" id="6_ex0wv"]
+
+[node name="WinScreen" type="CanvasLayer"]
+script = ExtResource("1_56kyq")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.361
+anchor_right = 0.656
+anchor_bottom = 0.639
+offset_left = -0.480042
+offset_top = 0.119965
+offset_right = 0.47998
+offset_bottom = -0.120056
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "YOU WON!"
+horizontal_alignment = 1
+
+[node name="Loot" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "20"
+horizontal_alignment = 1
+
+[node name="Take" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Take coins"
+
+[node name="Gamble" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Gamble?"
+
+[node name="Coin" parent="." instance=ExtResource("1_gxynp")]
+position = Vector2(752, 544)
+
+[node name="Chest" parent="." instance=ExtResource("2_0grl8")]
+position = Vector2(1200, 522)
+
+[node name="GambleSuccess" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3rtyo")
+
+[node name="GambleFail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cgkwl")
+
+[node name="Kaching" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ex0wv")
+volume_db = 24.0
+
+[connection signal="pressed" from="Panel/VBoxContainer/Take" to="." method="OnTakePressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Gamble" to="." method="OnGamblePressed"]

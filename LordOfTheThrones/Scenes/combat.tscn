@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=28 format=3 uid="uid://bjqgfc1tr6siy"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
@@ -14,6 +14,11 @@
 [ext_resource type="StyleBox" uid="uid://cq7twvdargjr2" path="res://Art/Buttons/CombatHover.tres" id="9_w07ft"]
 [ext_resource type="StyleBox" uid="uid://bctkfvb7jw31i" path="res://Art/Buttons/CombatPressed.tres" id="10_62w0w"]
 [ext_resource type="StyleBox" uid="uid://iyr4q0a3jj4k" path="res://Art/Buttons/CombatDisabled.tres" id="11_8sdxc"]
+[ext_resource type="PackedScene" uid="uid://vk7wv5v8hshy" path="res://Scenes/win_screen.tscn" id="15_i8oko"]
+[ext_resource type="AudioStream" uid="uid://x21oh4i5b6xq" path="res://Art/happy_ending.wav" id="16_vk24y"]
+[ext_resource type="PackedScene" uid="uid://b2lhp13amybea" path="res://Scenes/lose_screen.tscn" id="17_pvt0c"]
+[ext_resource type="AudioStream" uid="uid://2o34gc5vkwfk" path="res://Art/game_over.wav" id="18_5pllw"]
+[ext_resource type="PackedScene" uid="uid://5jhddwjd5g80" path="res://Scenes/coin.tscn" id="19_karet"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0rq2"]
 bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
@@ -124,6 +129,7 @@ scale = Vector2(7, 7)
 
 [node name="BG_Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o7inf")
+volume_db = -30.0
 autoplay = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -135,6 +141,19 @@ offset_top = -216.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 10
+
+[node name="Gold" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -24.0
+offset_right = 240.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "300"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -281,5 +300,20 @@ stream = ExtResource("8_va6gs")
 
 [node name="Enemy_Attack_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_sthue")
+
+[node name="WinScreen" parent="." instance=ExtResource("15_i8oko")]
+visible = false
+
+[node name="Winning_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_vk24y")
+
+[node name="LoseScreen" parent="." instance=ExtResource("17_pvt0c")]
+visible = false
+
+[node name="Losing_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_5pllw")
+
+[node name="Coin" parent="." instance=ExtResource("19_karet")]
+position = Vector2(64, 936)
 
 [connection signal="pressed" from="Panel/HBoxContainer/Attack" to="." method="OnAttackPressed"]
