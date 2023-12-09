@@ -58,11 +58,11 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Gamble?"
 
-[node name="Coin" parent="." instance=ExtResource("1_gxynp")]
-position = Vector2(752, 544)
+[node name="Coin" parent="Panel" instance=ExtResource("1_gxynp")]
+position = Vector2(92, 154)
 
-[node name="Chest" parent="." instance=ExtResource("2_0grl8")]
-position = Vector2(1200, 522)
+[node name="Chest" parent="Panel" instance=ExtResource("2_0grl8")]
+position = Vector2(540, 132)
 
 [node name="GambleSuccess" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3rtyo")

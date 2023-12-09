@@ -47,11 +47,11 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Give Up"
 
-[node name="Skull" parent="." instance=ExtResource("2_2j3a8")]
-position = Vector2(1152, 528)
+[node name="Skull" parent="Panel" instance=ExtResource("2_2j3a8")]
+position = Vector2(492, 138)
 
-[node name="Skull2" parent="." instance=ExtResource("2_2j3a8")]
-position = Vector2(768, 522)
+[node name="Skull2" parent="Panel" instance=ExtResource("2_2j3a8")]
+position = Vector2(108, 132)
 
 [connection signal="pressed" from="Panel/VBoxContainer/TryAgain" to="." method="OnTryAgainPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="OnGiveUpPressed"]

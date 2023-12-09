@@ -19,7 +19,7 @@ public partial class WinScreen : CanvasLayer
 
 	public void OnGamblePressed()
 	{
-		GetNode<AnimatedSprite2D>("Chest/AnimatedSprite2D").Play("default");
+		GetNode<AnimatedSprite2D>("Panel/Chest/AnimatedSprite2D").Play("default");
 		int droppedLoot = GetNode<Label>("Panel/VBoxContainer/Loot").Text.ToInt();
 		int gambledLoot = GambleManager.DoubleOrNothing(droppedLoot);
 		GetNode<Label>("Panel/VBoxContainer/Loot").Text = gambledLoot.ToString();
