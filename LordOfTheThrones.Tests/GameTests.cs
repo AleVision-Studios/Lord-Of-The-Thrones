@@ -81,5 +81,28 @@ namespace LordOfTheThrones.Tests
 			Assert.Equal(0, result);
 		}
 
+		[Theory]
+		[InlineData("ShortName")]
+		[InlineData("ThisIsAReasonablyLongName")]
+		[InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDE")] 
+		[InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF")]
+		public void NameChecker_ValidAndInvalidNames(string name)
+		{
+			// Arrange
+
+			// Act
+			bool result = Helpers.NameChecker(name); 
+
+			// Assert
+			if (name.Length >= 27)
+			{
+				Assert.False(result); 
+			}
+			else
+			{
+				Assert.True(result); 
+			}
+		}
+
 	}
 }
