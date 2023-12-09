@@ -1,4 +1,5 @@
 using Godot;
+using LordOfTheThrones;
 using System;
 
 public partial class StartScreen : Node
@@ -21,6 +22,20 @@ public partial class StartScreen : Node
     public void SavePlayerName()
     {
         GD.Print("SavePlayerName is running");
-        playerName = GetNode<LineEdit>("Panel/HBoxContainer/LineEdit").Text;
+        string inputName = GetNode<LineEdit>("Panel/HBoxContainer/LineEdit").Text;
+        var saveButton = GetNode<Button>("Panel/HBoxContainer/Save");
+        
+        if (Helpers.NameChecker(inputName))
+        {
+            playerName = inputName.ToUpper();
+            saveButton.Text = "OK!";
+		}
+        else
+        {
+            playerName = "PLAYER";
+            saveButton.Text = "Please change name.";
+        }
+
+        
     }
 }
