@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjqgfc1tr6siy"]
+[gd_scene load_steps=30 format=3 uid="uid://bjqgfc1tr6siy"]
 
 [ext_resource type="Script" path="res://Script/Combat.cs" id="1_ira6s"]
 [ext_resource type="Texture2D" uid="uid://crgu183ipir13" path="res://Art/battleback1_0.png" id="1_jdhbb"]
@@ -19,6 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://b2lhp13amybea" path="res://Scenes/lose_screen.tscn" id="17_pvt0c"]
 [ext_resource type="AudioStream" uid="uid://2o34gc5vkwfk" path="res://Art/game_over.wav" id="18_5pllw"]
 [ext_resource type="PackedScene" uid="uid://5jhddwjd5g80" path="res://Scenes/coin.tscn" id="19_karet"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_pqfm4"]
+action = &"Attack"
+
+[sub_resource type="Shortcut" id="Shortcut_dkvb2"]
+events = [SubResource("InputEventAction_pqfm4")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0rq2"]
 bg_color = Color(0.262745, 0.152941, 0.0588235, 1)
@@ -173,10 +179,27 @@ theme_override_styles/normal = ExtResource("8_0lnrh")
 theme_override_styles/hover = ExtResource("9_w07ft")
 theme_override_styles/pressed = ExtResource("10_62w0w")
 theme_override_styles/disabled = ExtResource("11_8sdxc")
+shortcut = SubResource("Shortcut_dkvb2")
 text = "ATTACK"
 
 [node name="Coin" parent="Panel" instance=ExtResource("19_karet")]
 position = Vector2(64, 104)
+
+[node name="Level" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -7.5
+offset_right = -120.0
+offset_bottom = 7.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "LEVEL 1"
 
 [node name="PlayerStats" type="Panel" parent="."]
 anchors_preset = -1
