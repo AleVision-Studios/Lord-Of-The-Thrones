@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://3ey4use1vekc"]
+
+[ext_resource type="Texture2D" uid="uid://cou18uplgkuu0" path="res://Art/Skulls(SpriteShee)(Dark outline1.png" id="1_in0b1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67mj7"]
+atlas = ExtResource("1_in0b1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng7ik"]
+atlas = ExtResource("1_in0b1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijqag"]
+atlas = ExtResource("1_in0b1")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x23ti"]
+atlas = ExtResource("1_in0b1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m84b3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67mj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng7ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijqag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x23ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng7ik")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Skull" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_m84b3")
+autoplay = "default"
+frame_progress = 0.0328164

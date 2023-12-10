@@ -4,7 +4,7 @@ using System;
 
 public partial class StartScreen : Node
 {
-    public static string playerName;
+    public static string playerName = "PLAYER";
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -13,7 +13,6 @@ public partial class StartScreen : Node
             () => GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene("Scenes/game.tscn");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public void ExitGame()
     {
         GetTree().Quit();

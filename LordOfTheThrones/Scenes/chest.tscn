@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://dt34rw5cowy0d"]
+
+[ext_resource type="Texture2D" uid="uid://yncvmjodk14e" path="res://Art/Chests.png" id="1_dclv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajmtj"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhwjp"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(48, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jayp5"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(96, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwpx8"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(144, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j528a"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(192, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irmdk"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ame51"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(48, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq5w4"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(96, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alat2"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(144, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8egb"]
+atlas = ExtResource("1_dclv5")
+region = Rect2(192, 160, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5bx7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajmtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhwjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jayp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwpx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j528a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irmdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ame51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq5w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alat2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8egb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Chest" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5bx7w")
+frame = 1
+frame_progress = 0.3527

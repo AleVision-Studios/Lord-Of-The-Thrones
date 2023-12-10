@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LordOfTheThrones.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ab43f4bdd61d1c24eaf1e8c47fbb7af8cb3539b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bd9adb058209926e42713ae82123343c87d938b")]
 [assembly: System.Reflection.AssemblyProductAttribute("LordOfTheThrones.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LordOfTheThrones.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

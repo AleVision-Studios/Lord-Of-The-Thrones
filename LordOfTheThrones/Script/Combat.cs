@@ -11,9 +11,12 @@ public partial class Combat : Node
 
 	private int _currentEnemyHealth = 0;
 	private int _currentPlayerHealth = 0;
+	
+	private static int _level = 1;
 
-	private int _enemyDamageBonus = 20;
+	private int _enemyDamageBonus = 18 + _level;
 	private int _playerDamageBonus = 5;
+
 
 	public override void _Ready()
 	{
@@ -26,6 +29,8 @@ public partial class Combat : Node
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
 		GetNode<Label>("PlayerStats/PlayerContainer/PlayerName").Text = StartScreen.playerName;
+		GetNode<Label>("Panel/Gold").Text = "X " + PlayerState.TotalGold.ToString();
+		GetNode<Label>("Panel/Level").Text = "LEVEL " + _level.ToString();
 
 		SetHealth(enemyHealthBar, Enemy.Health, Enemy.Health);
 		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
@@ -56,12 +61,28 @@ public partial class Combat : Node
 		{
 			await RunMethodWithDelay(0, RunEnemyDeathAnimation);
 			DisableAttackButton();
+			await RunMethodWithDelay(3000, ShowWinScreen);
 		}
 		else
 		{
 			await RunMethodWithDelay(1000, EnemyTurn);
 			DisableAttackButton();
 		}
+	}
+
+	private void ShowWinScreen()
+	{
+		GetNode<AudioStreamPlayer>("Winning_Sound").Play();
+		GetNode<CanvasLayer>("WinScreen").Visible = true;
+		_level++;
+	}
+
+	private void ShowLoseScreen()
+	{
+		GetNode<AudioStreamPlayer>("Losing_Sound").Play();
+		GetNode<CanvasLayer>("LoseScreen").Visible = true;
+		PlayerState.TotalGold = 0;
+		_level = 1;
 	}
 
 	//Disables the AttackButton, use this during the enemies Turns,
@@ -95,6 +116,8 @@ public partial class Combat : Node
 		{
 			await RunMethodWithDelay(0, RunPlayerDeathAnimation);
 			DisableAttackButton();
+			await RunMethodWithDelay(1000, ShowLoseScreen);
+
 		}
 		else
 		{
