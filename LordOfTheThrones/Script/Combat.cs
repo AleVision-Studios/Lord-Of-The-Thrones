@@ -82,6 +82,7 @@ public partial class Combat : Node
 		GetNode<AudioStreamPlayer>("Losing_Sound").Play();
 		GetNode<CanvasLayer>("LoseScreen").Visible = true;
 		PlayerState.TotalGold = 0;
+		_level = 1;
 	}
 
 	//Disables the AttackButton, use this during the enemies Turns,
