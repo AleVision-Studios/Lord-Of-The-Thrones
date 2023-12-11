@@ -66,13 +66,15 @@ position = Vector2(540, 132)
 
 [node name="GambleSuccess" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3rtyo")
+volume_db = -20.0
 
 [node name="GambleFail" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_cgkwl")
+volume_db = -20.0
 
 [node name="Kaching" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ex0wv")
-volume_db = 24.0
+volume_db = -20.0
 
 [connection signal="pressed" from="Panel/VBoxContainer/Take" to="." method="OnTakePressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Gamble" to="." method="OnGamblePressed"]

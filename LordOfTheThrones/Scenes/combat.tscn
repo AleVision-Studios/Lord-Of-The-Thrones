@@ -320,23 +320,28 @@ grow_vertical = 2
 
 [node name="Player_Attack_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_4h77j")
+volume_db = -20.0
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_va6gs")
+volume_db = -20.0
 
 [node name="Enemy_Attack_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_sthue")
+volume_db = -20.0
 
 [node name="WinScreen" parent="." instance=ExtResource("15_i8oko")]
 visible = false
 
 [node name="Winning_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_vk24y")
+volume_db = -20.0
 
 [node name="LoseScreen" parent="." instance=ExtResource("17_pvt0c")]
 visible = false
 
 [node name="Losing_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_5pllw")
+volume_db = -20.0
 
 [connection signal="pressed" from="Panel/HBoxContainer/Attack" to="." method="OnAttackPressed"]
