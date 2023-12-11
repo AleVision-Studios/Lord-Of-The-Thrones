@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj": {}
+    "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj": {}
   },
   "projects": {
-    "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj": {
+    "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
+        "projectUniqueName": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
         "projectName": "LordOfTheThrones.Tests",
-        "projectPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
-        "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-        "outputPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\obj\\",
+        "projectPath": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\LordOfTheThrones.Tests.csproj",
+        "packagesPath": "C:\\Users\\dogge\\.nuget\\packages\\",
+        "outputPath": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LordOfTheThrones.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dogge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,15 +27,14 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
-                "projectPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj"
+              "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
+                "projectPath": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj"
               }
             }
           }
@@ -95,20 +94,20 @@
         }
       }
     },
-    "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
+    "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj",
+        "projectUniqueName": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj",
         "projectName": "LordOfTheThrones",
-        "projectPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj",
-        "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-        "outputPath": "C:\\USERS\\JONAT\\DESKTOP\\SKOLA\\CLEANCODE & DEVOPS\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\LordOfTheThrones.csproj",
+        "packagesPath": "C:\\Users\\dogge\\.nuget\\packages\\",
+        "outputPath": "C:\\USERS\\DOGGE\\DESKTOP\\LORD-OF-THE-THRONES\\LORDOFTHETHRONES\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dogge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,8 +117,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
