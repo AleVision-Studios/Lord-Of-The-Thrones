@@ -24,18 +24,28 @@ public partial class Combat : Node
 		InitializeHealthValues();
 	}
 
+	//This sets all the UI elements in Combot to the current player stats and enemy stats.
 	private void InitializeUI()
 	{
+		//Variable of Health/Progress Bar for enemy and player
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
+
+		//Sets player name in PlayerName label
 		GetNode<Label>("PlayerStats/PlayerContainer/PlayerName").Text = StartScreen.playerName;
+
+		//Current Gold.
 		GetNode<Label>("Panel/Gold").Text = "X " + PlayerState.TotalGold.ToString();
+
+		//Current Level.
 		GetNode<Label>("Panel/Level").Text = "LEVEL " + _level.ToString();
 
+		//Sets the enemy and player health on the progressbar
 		SetHealth(enemyHealthBar, Enemy.Health, Enemy.Health);
 		SetHealth(playerHealthBar, _playerState.CurrentHealth, _playerState.MaxHealth);
 	}
 
+	//Our methods that sets the HP bar for enemy and player
 	public static void SetHealth(ProgressBar progressBar, int health, int maxHealth)
 	{
 		progressBar.Value = health;
@@ -70,6 +80,7 @@ public partial class Combat : Node
 		}
 	}
 
+
 	private void ShowWinScreen()
 	{
 		GetNode<AudioStreamPlayer>("Winning_Sound").Play();
@@ -101,6 +112,7 @@ public partial class Combat : Node
 	{
 		var enemyHealthBar = GetNode<ProgressBar>("EnemyStats/EnemyContainer/EnemyHealthBar");
 
+		//We use Math.Max here cause then the HP can never go below 0.
 		_currentEnemyHealth = Math.Max(0, _currentEnemyHealth - (_playerState.Damage + RandomNumber(_playerDamageBonus)));
 		SetHealth(enemyHealthBar, _currentEnemyHealth, Enemy.Health);
 	}
@@ -138,7 +150,8 @@ public partial class Combat : Node
 	{
 		var playerHealthBar = GetNode<ProgressBar>("PlayerStats/PlayerContainer/PlayerHealthBar");
 
-		_currentPlayerHealth = Math.Max(0, _currentPlayerHealth - (Enemy.Damage + RandomNumber(_enemyDamageBonus)));
+        //We use Math.Max here cause then the HP can never go below 0.
+        _currentPlayerHealth = Math.Max(0, _currentPlayerHealth - (Enemy.Damage + RandomNumber(_enemyDamageBonus)));
 		SetHealth(playerHealthBar, _currentPlayerHealth, _playerState.MaxHealth);
 	}
 

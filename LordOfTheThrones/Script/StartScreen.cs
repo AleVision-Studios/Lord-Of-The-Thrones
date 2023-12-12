@@ -18,6 +18,7 @@ public partial class StartScreen : Node
         GetTree().Quit();
     }
 
+    //This is how we Save the player name so it displays in the combat hud.
     public void SavePlayerName()
     {
         GD.Print("SavePlayerName is running");

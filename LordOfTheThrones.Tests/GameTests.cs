@@ -82,11 +82,13 @@ namespace LordOfTheThrones.Tests
 		}
 
 		[Theory]
-		[InlineData("ShortName")]
-		[InlineData("ThisIsAReasonablyLongName")]
+		//[InlineData("ShortName")]
+		//[InlineData("ThisIsAReasonablyLongName")]
 		[InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDE")] 
 		[InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF")]
-		public void NameChecker_ValidAndInvalidNames(string name)
+        [InlineData("ABCDEFGHIJKLMNOPQASDASDCDDWRSTUVWXYZABCDEF")]
+        [InlineData("ABCDEFGHIJKLMNOPQASDASDCDDASKLDJIOÖCHÖDWRSTUVWXYZABCDEF")]
+        public void NameChecker_InvalidNames(string name)
 		{
 			// Arrange
 
@@ -94,15 +96,33 @@ namespace LordOfTheThrones.Tests
 			bool result = Helpers.NameChecker(name); 
 
 			// Assert
-			if (name.Length >= 27)
+			if (name.Length >= 15)
 			{
 				Assert.False(result); 
 			}
-			else
-			{
-				Assert.True(result); 
-			}
+
 		}
 
-	}
+		[Theory]
+        [InlineData("ShortName")]
+        [InlineData("FiftheenNumbers")]
+		[InlineData("Douglas")]
+        [InlineData("Jonatan")]
+        [InlineData("Bo")]
+        public void NameChecker_ValidNames(string name)
+        {
+            // Arrange
+
+            // Act
+            bool result = Helpers.NameChecker(name);
+
+            // Assert
+            if (name.Length <= 15)
+            {
+                Assert.True(result);
+            }
+
+        }
+
+    }
 }

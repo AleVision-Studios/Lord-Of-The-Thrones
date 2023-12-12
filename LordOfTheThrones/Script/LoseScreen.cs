@@ -13,11 +13,13 @@ public partial class LoseScreen : CanvasLayer
 	{
 	}
 
+	//This resets the game and you begin from level 1 with all stats reset.
 	public void OnTryAgainPressed()
 	{
 		GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene("Scenes/game.tscn");
 	}
 
+	//This method turns off the whole game
 	public void OnGiveUpPressed()
 	{
 		GetTree().Quit();
