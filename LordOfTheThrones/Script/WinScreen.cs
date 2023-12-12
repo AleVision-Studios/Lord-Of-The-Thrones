@@ -17,6 +17,7 @@ public partial class WinScreen : CanvasLayer
 	{
 	}
 
+
 	public void OnGamblePressed()
 	{
 		GetNode<AnimatedSprite2D>("Panel/Chest/AnimatedSprite2D").Play("default");

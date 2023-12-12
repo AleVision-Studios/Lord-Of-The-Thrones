@@ -3,6 +3,7 @@ using System;
 
 public partial class PlayerState : Node
 {
+	//This is the players stats, they are used as a global variable in the project
 	public int CurrentHealth = 100;
 	public int MaxHealth = 100;
 	public int Damage = 10;

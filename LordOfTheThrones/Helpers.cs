@@ -10,7 +10,7 @@ namespace LordOfTheThrones
 	{
 		public static bool NameChecker(string name)
 		{
-			if (name.Length >= 27)
+			if (name.Length >= 16)
 			{
 				return false;
 			}
